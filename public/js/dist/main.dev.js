@@ -2,12 +2,22 @@
 
 var deleteText = document.querySelectorAll('.fa-trash');
 var thumbText = document.querySelectorAll('.fa-thumbs-up');
+var updateText = document.querySelectorAll('.fas fa-pencil-alt');
 Array.from(deleteText).forEach(function (element) {
   element.addEventListener('click', deleteRapper);
 });
 Array.from(thumbText).forEach(function (element) {
   element.addEventListener('click', addLike);
-});
+}); // updateText.addEventListener('click', (_) => {
+// 	fetch('/updateRapper', {
+// 		method: 'put',
+// 		headers: { 'Content-Type': 'application/json' },
+// 		body: JSON.stringify({
+// 			stageNameS: sName,
+// 			birthNameS: bName,
+// 		}),
+// 	})
+// })
 
 function deleteRapper() {
   var sName, bName, response, data;

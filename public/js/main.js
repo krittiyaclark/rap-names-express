@@ -1,5 +1,6 @@
 const deleteText = document.querySelectorAll('.fa-trash')
 const thumbText = document.querySelectorAll('.fa-thumbs-up')
+const updateText = document.querySelectorAll('.fas fa-pencil-alt')
 
 Array.from(deleteText).forEach((element) => {
 	element.addEventListener('click', deleteRapper)
@@ -8,6 +9,17 @@ Array.from(deleteText).forEach((element) => {
 Array.from(thumbText).forEach((element) => {
 	element.addEventListener('click', addLike)
 })
+
+// updateText.addEventListener('click', (_) => {
+// 	fetch('/updateRapper', {
+// 		method: 'put',
+// 		headers: { 'Content-Type': 'application/json' },
+// 		body: JSON.stringify({
+// 			stageNameS: sName,
+// 			birthNameS: bName,
+// 		}),
+// 	})
+// })
 
 async function deleteRapper() {
 	const sName = this.parentNode.childNodes[1].innerText
