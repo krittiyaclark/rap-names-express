@@ -51,6 +51,28 @@ app.post('/addRapper', function (request, response) {
   })["catch"](function (error) {
     console.log(error);
   });
+}); //  API ADD LIKE
+
+app.put('/addOneLike', function (request, response) {
+  db.collection('rappers').updateOne({
+    stageName: request.body.stageNameS,
+    birthName: request.body.birthNameS,
+    likes: request.body.likesS
+  }, {
+    $set: {
+      likes: request.body.likesS + 1
+    }
+  }, {
+    sort: {
+      _id: -1
+    },
+    upsert: true
+  }).then(function (result) {
+    console.log('Added One Like');
+    response.json('Like Added');
+  })["catch"](function (error) {
+    return console.log(error);
+  });
 }); // API DELETE
 
 app["delete"]('/deleteRapper', function (request, response) {
@@ -62,25 +84,7 @@ app["delete"]('/deleteRapper', function (request, response) {
   })["catch"](function (error) {
     return console.log(error);
   });
-}); // app.put('/updateRapper', (request, response) => {
-// 	db.collection('rappers')
-// 		.findOneAndUpdate(
-// 			{ stageName: request.body.stageName, birthName: request.body.birthName },
-// 			{
-// 				$set: {
-// 					stageName: request.body.stageName,
-// 					birthName: request.body.birthName,
-// 				},
-// 			},
-// 			{ upsert: true }
-// 		)
-// 		.then((result) => {
-// 			console.log(result)
-// 		})
-// 		.catch((error) => console.log(error))
-// 	console.log(request.body)
-// })
-// // Setup Server
+}); // // Setup Server
 
 app.listen(process.env.PORT || PORT, function () {
   console.log("Server running on port ".concat(PORT));
